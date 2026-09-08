@@ -1,1 +1,1 @@
-# AI-diet-and-meal-planner
+# ai_diet_and_meal_planner
