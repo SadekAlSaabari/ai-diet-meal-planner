@@ -24,3 +24,23 @@ class DietInput(BaseModel):
 class ManagerInput(BaseModel):
     items: List[str]
     diet: str
+
+class RecipePlanInput(BaseModel):
+    base_recipe: str
+
+class RecipeRecommendInput(BaseModel):
+    items: List[str]
+    diet: str
+    recipe_count: int = 5
+
+class RecipeStep(BaseModel):
+    step_number: int
+    instruction: str
+
+class RecipeResponse(BaseModel):
+    title: str
+    ingredients: List[str]
+    steps: List[RecipeStep]
+
+class RecipeGroupResponse(BaseModel):
+    recipes: List[RecipeResponse]

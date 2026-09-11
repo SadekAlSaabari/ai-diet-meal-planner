@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from agents.diet_agent import DietAgent
 from agents.inventory_agent import InventoryAgent
 from agents.manager_agent import ManagerAgent
-from models import InventoryInput, InventoryResponse, DietInput, DietResponse, ManagerInput, ManagerResponse
+from agents.planner_agent import PlannerAgent
+from models import InventoryInput, InventoryResponse, DietInput, DietResponse, ManagerInput, ManagerResponse, RecipeGroupResponse, RecipeResponse, RecipePlanInput, RecipeRecommendInput
 
 # FastAPI istance defining routes and handling HTTP requests
 app = FastAPI(title="AI Diet and Meal Planner")
@@ -11,6 +12,7 @@ app = FastAPI(title="AI Diet and Meal Planner")
 inventory_agent = InventoryAgent()
 diet_agent = DietAgent()
 manager_agent = ManagerAgent()
+planner_agent = PlannerAgent()
 
 # root endpoint returning a success message indicating the server is activated
 @app.get("/")
@@ -33,4 +35,16 @@ def diet_request(user_input: DietInput) -> DietResponse:
 @app.post("/ask", response_model=ManagerResponse)
 def manager_request(user_input: ManagerInput) -> ManagerResponse:
     result = manager_agent.run(user_input=user_input)
+    return result
+
+# plan endpoint taking a dish and returning a step by step recipe including ingredients needed and instructions on how to prepare the dish
+@app.post("/plan", response_model=RecipeResponse)
+def planner_request(user_input: RecipePlanInput) -> RecipeResponse:
+    result = planner_agent.planRecipe(user_input=user_input)
+    return result
+
+# recommend endpoint taking a list of items and dietary preference, and returning a list of recipe ideas including step by step instructions for each
+@app.post("/recommend", response_model=RecipeGroupResponse)
+def planner_recommend(user_input: RecipeRecommendInput) -> RecipeGroupResponse:
+    result = planner_agent.recommend(user_input=user_input)
     return result
