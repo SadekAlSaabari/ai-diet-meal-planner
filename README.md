@@ -21,7 +21,7 @@ cd ai-diet-meal-planner
 
 ### 2. Create a .env file
 
-Create a local .env file in the project root in the format of the .env.example and add your Groq API key:
+Create a local .env file in the project root based on .env.example and add your Groq API key:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
