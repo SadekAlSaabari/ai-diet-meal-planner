@@ -1,4 +1,4 @@
-# AI Diet Meal Planner
+# AI Diet & Meal Planner
 
 A FastAPI application that helps users plan meals based on their available ingredients and dietary preferences. It provides endpoints to check inventory, get diet-friendly suggestions, generate meal plans, and receive recipe recommendations.
 
@@ -27,7 +27,7 @@ Create a local .env file in the project root in the format of the .env.example a
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-You can obtain a Groq API key from the Groq console.
+You can obtain a Groq API key from the Groq console: https://console.groq.com/home
 
 ### 3. Install dependencies
 
